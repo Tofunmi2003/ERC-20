@@ -34,10 +34,26 @@ contract TofieToken is IERC20 {
        function transfer(address recipient, uint256 amount) public returns (bool success){
          balances[msg.sender] = balances[msg.sender]- amount;
          balances[msg.sender]  = balances[recipient]   +amount; 
-         emit transfer(msg.sender, recipient, amount);
+         emit Transfer(msg.sender, recipient, amount);
          return true;
           }
+       function approve(address spender, uint256 amount) public returns (bool success){
+            allowed[msg.sender][spender]=amount;
+            emit Approval(msg.sender, spender, amount);
+            return true;
+         }
 
-        
-      
+
+       function transferFrom(address sender, address recipient, uint256 amount) public returns (bool success){
+          balances[sender] = balances[sender] - amount;
+          allowed[sender][msg.sender] = allowed[sender][msg.sender] - amount;
+          balances[recipient] = balances[recipient] + amount;
+          emit Transfer(sender, recipient, amount);
+          return true;
+       }
+          
+
+       function allowance(address owner, address spender) public  view returns (uint256 remaining){
+               return allowed[owner][spender];
+          }
 }
