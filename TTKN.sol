@@ -19,8 +19,8 @@ contract TofieToken is IERC20 {
        name = "Tofietoken coin";
        decimals = 18;
        _totalSupply = 1_000_001_000_000_000_000_000_000;// A million + 1 coin, with 18 zeros for decimal points
-       balances[YOUR_WALLET_ADDRESS] = _totalSupply;
-       emit Transfer (address(0), YOUR_WALLET_ADDRESS, _totalSupply);
+       balances[0x6D73158beFea0Ec2A34B5e9829a8aa9f082AD302] = _totalSupply;
+       emit Transfer (address(0), 0x6D73158beFea0Ec2A34B5e9829a8aa9f082AD302, _totalSupply);
     }
 
       function totalSupply() external view returns (uint256){
@@ -37,5 +37,7 @@ contract TofieToken is IERC20 {
          emit transfer(msg.sender, recipient, amount);
          return true;
           }
+
+        
       
 }
